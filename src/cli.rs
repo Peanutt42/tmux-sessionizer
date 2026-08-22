@@ -144,6 +144,9 @@ pub struct ConfigArgs {
     #[arg(long, value_name = "true | false")]
     /// Enable listing of woktrees for bare repositories
     enable_list_worktrees: Option<bool>,
+    #[arg(long, value_name = "true | false")]
+    /// Create a tmux window for each of the worktrees of the repository
+    create_windows_for_worktrees: Option<bool>,
 }
 
 #[derive(Debug, Args)]
@@ -441,6 +444,10 @@ fn config_command(cmd: &ConfigCommand, mut config: Config) -> Result<()> {
 
     if let Some(enable_list_worktrees) = args.enable_list_worktrees {
         config.list_worktrees = Some(enable_list_worktrees.to_owned());
+    }
+
+    if let Some(create_windows_for_worktrees) = args.create_windows_for_worktrees {
+        config.create_windows_for_worktrees = Some(create_windows_for_worktrees.to_owned());
     }
 
     if let Some(dirs) = &args.excluded_dirs {

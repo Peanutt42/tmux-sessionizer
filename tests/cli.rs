@@ -70,6 +70,7 @@ fn tms_config() -> anyhow::Result<()> {
         vcs_providers: None,
         input_position: None,
         list_worktrees: None,
+        create_windows_for_worktrees: None,
     };
 
     let mut tms = Command::cargo_bin("tms")?;

@@ -55,7 +55,9 @@ impl Session {
 
         if !tmux.session_exists(&session_name) {
             tmux.new_session(Some(&session_name), Some(&path));
-            tmux.set_up_tmux_env(repo, &session_name)?;
+            if config.create_windows_for_worktrees.unwrap_or(true) {
+                tmux.set_up_tmux_env(repo, &session_name)?;
+            }
             tmux.run_session_create_script(self.path(), &session_name, config)?;
         }
 

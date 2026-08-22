@@ -55,6 +55,7 @@ pub struct Config {
     pub clone_repo_switch: Option<CloneRepoSwitchConfig>,
     pub vcs_providers: Option<Vec<VcsProviders>>,
     pub list_worktrees: Option<bool>,
+    pub create_windows_for_worktrees: Option<bool>,
 }
 
 pub const DEFAULT_VCS_PROVIDERS: &[VcsProviders] = &[VcsProviders::Git];
@@ -86,6 +87,7 @@ pub struct ConfigExport {
     pub clone_repo_switch: CloneRepoSwitchConfig,
     pub vcs_providers: Vec<VcsProviders>,
     pub list_worktrees: bool,
+    pub create_windows_for_worktrees: bool,
 }
 
 impl From<Config> for ConfigExport {
@@ -114,6 +116,7 @@ impl From<Config> for ConfigExport {
             clone_repo_switch: value.clone_repo_switch.unwrap_or_default(),
             vcs_providers: value.vcs_providers.unwrap_or(DEFAULT_VCS_PROVIDERS.into()),
             list_worktrees: value.list_worktrees.unwrap_or_default(),
+            create_windows_for_worktrees: value.create_windows_for_worktrees.unwrap_or(true),
         }
     }
 }
